@@ -6,8 +6,6 @@ import Footer from "../components/shared/footer/Footer";
 const Layout = () => {
   return (
     <div>
-      {/* shared navbar */}
-      <Navbar />
       {/* Main content */}
       <main className="min-h-screen mx-auto container">
         <Outlet />
