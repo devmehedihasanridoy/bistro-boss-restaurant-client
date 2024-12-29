@@ -15,10 +15,10 @@ const Navbar = () => {
         <NavLink to="/dashboard">Dashboard</NavLink>
       </li>
       <li>
-        <NavLink to="/our-menu">Our menu</NavLink>
+        <NavLink to="/menu">Our menu</NavLink>
       </li>
       <li>
-        <NavLink to="/our-shop">our shop</NavLink>
+        <NavLink to="/shop">our shop</NavLink>
       </li>
     </>
   );
@@ -56,7 +56,7 @@ const Navbar = () => {
       </div>
       <div className="p-2 bg-green-800 rounded-full relative">
         <GiShoppingCart className="text-2xl" />
-        <span className="absolute -right-2 bottom-0 bg-[#ff0000] w-5 h-5 mx-auto rounded-full text-center">0</span>
+        <span className="absolute -right-2 bottom-0 bg-[#ff0000] w-5 h-5 mx-auto rounded-full text-center text-sm">0</span>
       </div>
       <div className="navbar-end w-1/5 mx-auto">
         <Link to="/login" className="btn">Sign in</Link>

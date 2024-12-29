@@ -8,11 +8,14 @@ import Heading from "../../components/shared/heading/Heading";
 import Testimonial from "../../components/home/testimonial/Testimonial";
 import Hero from "../../components/home/hero/Hero";
 import ChefRecommand from "../../components/home/chefRecommands/ChefRecommand";
+import { Helmet } from "react-helmet-async";
 
 const Home = () => {
-  
   return (
     <div>
+        <Helmet>
+            <title>home || bistro boss</title>
+        </Helmet>
       {/* navbar */}
       <Navbar />
       {/* carosel */}
@@ -32,14 +35,12 @@ const Home = () => {
         <OurMenu />
       </div>
       {/* call us section */}
-      <div className="bg-[#151515] py-24">
-        <h1 className=" text-4xl text-white font-normal capitalize text-center">
-          Call Us: +88 0192345678910
-        </h1>
+      <div className="py-24">
+        <Banner bgImg={'bg-[#151515]'} title={'Call Us: +88 0192345678910'} />
       </div>
       {/* chef recommand */}
       <div className="w-11/12 mx-auto py-20">
-          <ChefRecommand/>
+        <ChefRecommand />
       </div>
       {/*check it outs  */}
       <div className="features_img w-full mx-auto bg-fixed">

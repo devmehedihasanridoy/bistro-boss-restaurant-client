@@ -14,3 +14,17 @@
     background-size: cover;
     background-repeat: no-repeat;
 }
+
+/*  */
+.menuCoverImg{
+    background-image: url('./assets/menu/banner3.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size:cover ;
+}
+.menuCoverImg1{
+    background-image: url('./assets/shop/banner2.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size:cover ;
+}
