@@ -10,6 +10,7 @@ import Hero from "../../components/home/hero/Hero";
 import ChefRecommand from "../../components/home/chefRecommands/ChefRecommand";
 
 const Home = () => {
+  
   return (
     <div>
       {/* navbar */}
