@@ -1,8 +1,8 @@
 import React from 'react';
 
-const Banner = ({title, bgImg}) => {
+const Banner1 = ({title, bgImg}) => {
     return (
-        <div className={`${bgImg}`}>
+        <div className={``}>
         <h1 className=" text-4xl text-white font-normal capitalize text-center">
           {title}
         </h1>
@@ -10,4 +10,4 @@ const Banner = ({title, bgImg}) => {
     );
 };
 
-export default Banner;
+export default Banner1;

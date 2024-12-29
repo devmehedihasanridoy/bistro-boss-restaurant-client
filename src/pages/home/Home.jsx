@@ -6,16 +6,17 @@ import OurMenu from "../../components/home/ourMenu/OurMenu";
 import CheckItOut from "../../components/home/checkItOut/CheckItOut";
 import Heading from "../../components/shared/heading/Heading";
 import Testimonial from "../../components/home/testimonial/Testimonial";
-import Hero from "../../components/home/hero/Hero";
+import Hero from "../../components/shared/hero/Hero";
 import ChefRecommand from "../../components/home/chefRecommands/ChefRecommand";
 import { Helmet } from "react-helmet-async";
+import Banner1 from "../../components/shared/banner/Banner1";
 
 const Home = () => {
   return (
     <div>
-        <Helmet>
-            <title>home || bistro boss</title>
-        </Helmet>
+      <Helmet>
+        <title>home || bistro boss</title>
+      </Helmet>
       {/* navbar */}
       <Navbar />
       {/* carosel */}
@@ -27,16 +28,18 @@ const Home = () => {
         <Categories />
       </div>
       {/* hero */}
-      <div className="hero_img w-11/12 mx-auto py-24">
-        <Hero />
+      <div className="">
+        <Hero textColor ={"text-[#151515]"} bgColor={"bg-white"} bgImg={'hero_img'} title={'Bistro Boss'} subTitle={'Lorem ipsum dolor sit amet consectetur adipisicing elit.Necessitatibus, libero accusamus laborum deserunt ratione dolor officiis praesentium! Deserunt magni aperiam dolor eius dolore at,nihil iusto ducimus incidunt quibusdam nemo.'} />
       </div>
       {/* our menu */}
       <div className="w-11/12 mx-auto py-20">
         <OurMenu />
       </div>
       {/* call us section */}
-      <div className="py-24">
-        <Banner bgImg={'bg-[#151515]'} title={'Call Us: +88 0192345678910'} />
+      <div className="bg-[#151515] py-24">
+        <h1 className=" text-4xl text-white font-normal capitalize text-center">
+          Call Us: +88 0192345678910
+        </h1>
       </div>
       {/* chef recommand */}
       <div className="w-11/12 mx-auto py-20">

@@ -28,3 +28,10 @@
     background-repeat: no-repeat;
     background-size:cover ;
 }
+
+.menuCoverImg2{
+    background-image: url('./assets/menu/dessert-bg.jpeg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size:cover ;
+}

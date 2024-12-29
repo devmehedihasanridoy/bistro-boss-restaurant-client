@@ -15,6 +15,7 @@ const Router = () => {
         <Route path="/dashboard" element={<DashBoard />} />
         <Route path="/menu" element={<OurMenu />} />
         <Route path="/shop" element={<OurShop />} />
+        <Route path="/shop/:category" element={<OurShop />} />
       </Route>
       {/* 404 page */}
       <Route path="*" element={<NotFound />} />
