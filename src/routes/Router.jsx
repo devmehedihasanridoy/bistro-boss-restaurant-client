@@ -8,6 +8,8 @@ import DashBoard from "../pages/dashboard/DashBoard";
 import NotFound from "../pages/not-found/NotFound";
 import Login from "../pages/auth/login/Login";
 import Register from "../pages/auth/register/Register";
+import PrivateRoute from "../privateRoute/PrivateRoute";
+import Secret from "../components/shared/secret/Secret";
 
 const Router = () => {
   return (
@@ -24,6 +26,8 @@ const Router = () => {
       {/* auth */}
       <Route path="/login" element={<Login />} />
       <Route path="/signUp" element={<Register />} />
+      {/* secret */}
+      <Route path="secret" element={<PrivateRoute><Secret></Secret></PrivateRoute>}></Route>
     </Routes>
   );
 };

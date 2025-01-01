@@ -12,7 +12,7 @@ const Navbar = () => {
     userSignOut()
     .then(result => {
       // handle the result here
-      toast('Hello World', {
+      toast('log out success fully', {
         duration: 4000,
         position: 'top-center',
       

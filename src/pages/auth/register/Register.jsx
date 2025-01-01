@@ -6,13 +6,12 @@ import { useForm } from "react-hook-form"
 import { Helmet } from "react-helmet-async";
 
 const Register = () => {
-  const { updateUserName, signUpUserUsingEmailPass, googleUserSignIn } =
+  const { updateUser, signUpUserUsingEmailPass, googleUserSignIn } =
     useAuth();
 //    
 const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm()
   //
@@ -24,7 +23,7 @@ const {
         alert("user signup success");
         console.log(result);
 
-        updateUserName(data?.name)
+        updateUser(data?.name , data?.photoURL)
         .then(result=>{
             console.log(result);
 
@@ -110,6 +109,15 @@ const {
             placeholder="Email"
             className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-orange-400"/>
              {errors.email && <span>Email is required</span>}
+
+             <input
+            type="url"
+            placeholder="Photo url"
+            {...register("photoURL",{required:true})}
+           name="photoURL"
+            className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-orange-400"
+          />
+            {errors.photoURL?.type === "required" && <span>Photo url is required</span>}
           <input
             type="password"
             name="password"

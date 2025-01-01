@@ -15,7 +15,7 @@ export const AuthContext = createContext(null);
 const AuthProvider = ({ children }) => {
   //
   const [user, setUser] = useState(null);
-  const [loader , setLoader] = useState(true)
+  const [loading , setLoading] = useState(true)
  console.log(user);
   // google login
   const googleUserSignIn = () => {
@@ -28,8 +28,8 @@ const AuthProvider = ({ children }) => {
     return createUserWithEmailAndPassword(auth , email, password);
   };
   // update user name
-  const updateUserName  = (name)=>{
-    return updateProfile(auth.currentUser,{displayName:name})
+  const updateUser  = (name , photoURL)=>{
+    return updateProfile(auth.currentUser,{displayName:name , photoURL:photoURL})
   }
   // login user with email and pass
   const loginUserWithEmailPass = (email, password) => {
@@ -44,12 +44,13 @@ const  userSignOut =()=>{
           
     if(currentUser){
       setUser(currentUser);
-      setLoader(false)
+      setLoading(false)
     }else{
         setUser('');
-        setLoader(true)
+        setLoading(true)
+        setLoading(false)
     }
-    
+
 
 // 
     return ()=> unsubscribe()
@@ -65,9 +66,9 @@ const  userSignOut =()=>{
     googleUserSignIn,
     signUpUserUsingEmailPass,
     loginUserWithEmailPass,
-    updateUserName,
+    updateUser,
     userSignOut,
-    loader,
+    loading,
     user
   };
   //

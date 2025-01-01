@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   loadCaptchaEnginge,
   LoadCanvasTemplate,
@@ -6,16 +6,20 @@ import {
   validateCaptcha,
 } from "react-simple-captcha";
 import { FaFacebook, FaGoogle, FaGithub } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../../components/hooks/useAuth";
 import { Helmet } from "react-helmet-async";
 
 //
 const Login = () => {
   const { loginUserWithEmailPass, googleUserSignIn } = useAuth();
-  //
-  const captchaRef = useRef(null);
+  //methood 1 using useRef hook
+  // const captchaRef = useRef(null);
   const [disabled, setDisabled] = useState(true);
+  //for navigate
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/"
   //
   useEffect(() => {
     loadCaptchaEnginge(6);
@@ -23,7 +27,7 @@ const Login = () => {
   // captcha validation
   const handleValidateCaptcha = (e) => {
     e.preventDefault();
-    const userCaptchaValue = captchaRef.current.value;
+    const userCaptchaValue = e.target.value;
 
     if (validateCaptcha(userCaptchaValue)) {
       setDisabled(false);
@@ -40,6 +44,7 @@ const Login = () => {
     loginUserWithEmailPass(email, password)
       .then((result) => {
         alert("user log in success");
+        navigate(from, {replace:true})
       })
       .catch((err) => {
         console.log(err);
@@ -86,18 +91,19 @@ const Login = () => {
               {/*  */}
               <input
                 type="text"
-                ref={captchaRef}
+                // ref={captchaRef}
                 name="captcha"
                 placeholder="type the capcha"
                 className="input input-bordered"
                 required
+                onBlur={handleValidateCaptcha}
               />
-              <button
+              {/* <button
                 className="py-1 w-full mx-auto bg-blue-200 rounded-full mt-3 text-sm font-semibold capitalize "
                 onClick={handleValidateCaptcha}
               >
                 validate capcha
-              </button>
+              </button> */}
             </div>
             {/*  */}
             <button
