@@ -1,8 +1,48 @@
 import React from "react";
 import { GiShoppingCart } from "react-icons/gi";
 import { Link, NavLink } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
+import toast from "react-hot-toast"
 
 const Navbar = () => {
+  // 
+  const {userSignOut , user} = useAuth();
+  // user sign out
+  const handleSignout =()=>{
+    userSignOut()
+    .then(result => {
+      // handle the result here
+      toast('Hello World', {
+        duration: 4000,
+        position: 'top-center',
+      
+        // Styling
+        style: {},
+        className: '',
+      
+        // Custom Icon
+        icon: '👏',
+      
+        // Change colors of success/error/loading icon
+        iconTheme: {
+          primary: '#000',
+          secondary: '#fff',
+        },
+      
+        // Aria
+        ariaProps: {
+          role: 'status',
+          'aria-live': 'polite',
+        },
+      
+        // Additional Configuration
+        removeDelay: 1000,
+      });
+      console.log(result);
+    }).catch(err=>{
+        console.log(err.message);
+    })
+  }
   const links = (
     <>
       <li>
@@ -59,7 +99,9 @@ const Navbar = () => {
         <span className="absolute -right-2 bottom-0 bg-[#ff0000] w-5 h-5 mx-auto rounded-full text-center text-sm">0</span>
       </div>
       <div className="navbar-end w-1/5 mx-auto">
-        <Link to="/login" className="btn">Sign in</Link>
+       
+        {user ? <Link onClick={handleSignout} to="/" className="btn">Sign Out</Link>:
+         <Link to="/login" className="btn">Login</Link>}
       </div>
     </div>
   );

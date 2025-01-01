@@ -6,6 +6,8 @@ import OurMenu from "../pages/our menu/OurMenu";
 import OurShop from "../pages/our shop/OurShop";
 import DashBoard from "../pages/dashboard/DashBoard";
 import NotFound from "../pages/not-found/NotFound";
+import Login from "../pages/auth/login/Login";
+import Register from "../pages/auth/register/Register";
 
 const Router = () => {
   return (
@@ -19,6 +21,9 @@ const Router = () => {
       </Route>
       {/* 404 page */}
       <Route path="*" element={<NotFound />} />
+      {/* auth */}
+      <Route path="/login" element={<Login />} />
+      <Route path="/signUp" element={<Register />} />
     </Routes>
   );
 };
