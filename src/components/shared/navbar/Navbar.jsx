@@ -3,8 +3,11 @@ import { GiShoppingCart } from "react-icons/gi";
 import { Link, NavLink } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast"
+import useCart from "../../hooks/useCart";
 
 const Navbar = () => {
+  // 
+  const [cart] = useCart();
   // 
   const {userSignOut , user} = useAuth();
   // user sign out
@@ -12,33 +15,7 @@ const Navbar = () => {
     userSignOut()
     .then(result => {
       // handle the result here
-      toast('log out success fully', {
-        duration: 4000,
-        position: 'top-center',
-      
-        // Styling
-        style: {},
-        className: '',
-      
-        // Custom Icon
-        icon: '👏',
-      
-        // Change colors of success/error/loading icon
-        iconTheme: {
-          primary: '#000',
-          secondary: '#fff',
-        },
-      
-        // Aria
-        ariaProps: {
-          role: 'status',
-          'aria-live': 'polite',
-        },
-      
-        // Additional Configuration
-        removeDelay: 1000,
-      });
-      console.log(result);
+      toast.success('User Logout successfully', {duration: 3000,});
     }).catch(err=>{
         console.log(err.message);
     })
@@ -96,12 +73,12 @@ const Navbar = () => {
       </div>
       <div className="p-2 bg-green-800 rounded-full relative">
         <GiShoppingCart className="text-2xl" />
-        <span className="absolute -right-2 bottom-0 bg-[#ff0000] w-5 h-5 mx-auto rounded-full text-center text-sm">0</span>
+        <span className="absolute -right-2 bottom-0 bg-[#ff0000] w-5 h-5 mx-auto rounded-full text-center text-sm">{cart?.length}</span>
       </div>
       <div className="navbar-end w-1/5 mx-auto">
        
         {user ? <Link onClick={handleSignout} to="/" className="btn">Sign Out</Link>:
-         <Link to="/login" className="btn">Login</Link>}
+         <Link to="/auth/login" className="btn">Login</Link>}
       </div>
     </div>
   );

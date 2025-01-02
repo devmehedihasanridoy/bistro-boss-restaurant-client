@@ -14,18 +14,25 @@ import Secret from "../components/shared/secret/Secret";
 const Router = () => {
   return (
     <Routes>
+       {/* Public Routes with Main Layout */}
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
-        <Route path="/dashboard" element={<DashBoard />} />
-        <Route path="/menu" element={<OurMenu />} />
-        <Route path="/shop" element={<OurShop />} />
-        <Route path="/shop/:category" element={<OurShop />} />
+        <Route path="dashboard" element={<DashBoard />} />
+        <Route path="menu" element={<OurMenu />} />
+          {/* Shop Routes */}
+        <Route path="shop">
+          <Route index element={<OurShop />} />
+          <Route path=":category" element={<OurShop/>} />
+        </Route>
+       
       </Route>
       {/* 404 page */}
       <Route path="*" element={<NotFound />} />
       {/* auth */}
-      <Route path="/login" element={<Login />} />
-      <Route path="/signUp" element={<Register />} />
+      <Route path="auth">
+        <Route path="login" element={<Login />} />
+        <Route path="signup" element={<Register />} />
+      </Route>
       {/* secret */}
       <Route path="secret" element={<PrivateRoute><Secret></Secret></PrivateRoute>}></Route>
     </Routes>

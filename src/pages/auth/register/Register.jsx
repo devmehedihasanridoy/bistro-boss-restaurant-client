@@ -1,13 +1,15 @@
 import React from "react";
 import { FaFacebook, FaGoogle, FaGithub } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../../components/hooks/useAuth";
 import { useForm } from "react-hook-form"
 import { Helmet } from "react-helmet-async";
+import toast from "react-hot-toast";
 
 const Register = () => {
-  const { updateUser, signUpUserUsingEmailPass, googleUserSignIn } =
-    useAuth();
+  const { updateUser, signUpUserUsingEmailPass, googleUserSignIn } =useAuth();
+  // 
+  const navigate = useNavigate();
 //    
 const {
     register,
@@ -20,19 +22,18 @@ const {
     //
      signUpUserUsingEmailPass(data?.email, data?.password)
       .then((result) => {
-        alert("user signup success");
-        console.log(result);
-
+        toast.success("User Signup Successfully");
+        navigate("/dashboard")
+        //update user info
         updateUser(data?.name , data?.photoURL)
-        .then(result=>{
-            console.log(result);
+        .then(()=>{
 
-        }).catch(err=>{
-            console.log(err);
+        }).catch(()=>{
+           
         })
       })
       .catch((err) => {
-        console.log(err);
+        toast.error(err.message)
       });
   }
 
@@ -79,7 +80,7 @@ const {
   const handleGoogleSignIn = () => {
     googleUserSignIn()
       .then((result) => {
-        alert("google sign in success");
+        toast.success("google sign in success");
       })
       .catch((err) => {
         console.log(err);
@@ -137,7 +138,7 @@ const {
         </form>
         <p className="text-center text-sm text-gray-600 mt-4">
           Already registered?{" "}
-          <Link to="/login" className="text-orange-500 hover:underline">
+          <Link to="/auth/login" className="text-orange-500 hover:underline">
             Go to log in
           </Link>
         </p>

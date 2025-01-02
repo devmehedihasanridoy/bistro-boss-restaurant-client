@@ -13,8 +13,7 @@ const OurShop = () => {
 const categories = ['salad', 'pizza' , 'soup' , 'dessert' , 'drinks']
 const {category}= useParams();
 const initialindex = categories.indexOf(category);
-const [tabIndex , setTabIndex] = useState(initialindex)
-
+const [tabIndex , setTabIndex] = useState(initialindex > -1 ? initialindex : 0);
 // 
 
   return (

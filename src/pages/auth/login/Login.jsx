@@ -9,6 +9,7 @@ import { FaFacebook, FaGoogle, FaGithub } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../../components/hooks/useAuth";
 import { Helmet } from "react-helmet-async";
+import toast from "react-hot-toast";
 
 //
 const Login = () => {
@@ -43,18 +44,19 @@ const Login = () => {
     //
     loginUserWithEmailPass(email, password)
       .then((result) => {
-        alert("user log in success");
+        toast.success("User Login Successfully");
         navigate(from, {replace:true})
       })
       .catch((err) => {
-        console.log(err);
+        toast.error(err.message);
       });
   };
   //  google sign in
   const handleGoogleSignIn = () => {
     googleUserSignIn()
       .then((result) => {
-        alert("google sign in success");
+        toast.success("Google Signin Success");
+        navigate(from, {replace:true})
       })
       .catch((err) => {
         console.log(err);
@@ -116,7 +118,7 @@ const Login = () => {
           </form>
           <p className="text-center text-sm text-gray-600 mt-4">
             New here?{" "}
-            <Link to="/signup" className="text-orange-500 hover:underline">
+            <Link to="/auth/signup" className="text-orange-500 hover:underline">
               Create a New Account
             </Link>
           </p>
