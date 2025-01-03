@@ -71,10 +71,10 @@ const Navbar = () => {
       <div className="navbar-center hidden lg:flex">
         <ul className="uppercase menu menu-horizontal px-1">{links}</ul>
       </div>
-      <div className="p-2 bg-green-800 rounded-full relative">
+      <Link to="/dashboard/cart" className="p-2 bg-green-800 rounded-full relative">
         <GiShoppingCart className="text-2xl" />
         <span className="absolute -right-2 bottom-0 bg-[#ff0000] w-5 h-5 mx-auto rounded-full text-center text-sm">{cart?.length}</span>
-      </div>
+      </Link>
       <div className="navbar-end w-1/5 mx-auto">
        
         {user ? <Link onClick={handleSignout} to="/" className="btn">Sign Out</Link>:
