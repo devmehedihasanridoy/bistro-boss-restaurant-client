@@ -7,10 +7,12 @@ import Loader from "../../../components/loader/Loader";
 import { MdDeleteForever } from "react-icons/md";
 import { CiUser } from "react-icons/ci";
 
+
 const AllUsers = () => {
+
   //
   const axiosSecure = useAxiosSecure();
-
+//   
 const {
   data: users,
   isLoading,

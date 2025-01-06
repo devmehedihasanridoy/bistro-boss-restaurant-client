@@ -13,6 +13,7 @@ import Cart from "../pages/dashboard/Cart";
 import UserHome from "../pages/dashboard/UserHome";
 import DashBoard from "../layouts/dashboard/DashBoard";
 import AllUsers from "../pages/dashboard/admin/AllUsers";
+import AdminPrivate from "../privateRoute/AdminPrivate";
 
 const Router = () => {
   return (
@@ -31,7 +32,7 @@ const Router = () => {
       <Route path="dashboard" element={<PrivateRoute><DashBoard /></PrivateRoute>}>
         <Route index  element={<UserHome/>} />
         <Route path="cart" element={<Cart />} />
-        <Route path="all-users" element={<AllUsers/>} />
+        <Route path="all-users" element={<AdminPrivate><AllUsers/></AdminPrivate>} />
       </Route>
       {/* 404 page */}
       <Route path="*" element={<NotFound />} />
