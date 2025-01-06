@@ -10,6 +10,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../../components/hooks/useAuth";
 import { Helmet } from "react-helmet-async";
 import toast from "react-hot-toast";
+import SocialLogin from "../socialLogin/SocialLogin";
 
 //
 const Login = () => {
@@ -51,17 +52,7 @@ const Login = () => {
         toast.error(err.message);
       });
   };
-  //  google sign in
-  const handleGoogleSignIn = () => {
-    googleUserSignIn()
-      .then((result) => {
-        toast.success("Google Signin Success");
-        navigate(from, {replace:true})
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+
 
   //
   return (
@@ -124,20 +115,7 @@ const Login = () => {
           </p>
           <div className="mt-6 text-center">
             <p className="text-gray-500 text-sm">Or sign in with</p>
-            <div className="flex justify-center space-x-4 mt-4">
-              <button className="bg-gray-100 p-3 rounded-full shadow hover:bg-gray-200">
-                <FaFacebook className="text-blue-600 text-xl" />
-              </button>
-              <button
-                onClick={handleGoogleSignIn}
-                className="bg-gray-100 p-3 rounded-full shadow hover:bg-gray-200"
-              >
-                <FaGoogle className="text-red-500 text-xl" />
-              </button>
-              <button className="bg-gray-100 p-3 rounded-full shadow hover:bg-gray-200">
-                <FaGithub className="text-gray-800 text-xl" />
-              </button>
-            </div>
+              <SocialLogin/>
           </div>
         </div>
       </div>
