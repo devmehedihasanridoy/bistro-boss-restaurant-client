@@ -8,7 +8,6 @@ import useAdmin from "../../components/hooks/useAdmin";
 const DashBoard = () => {
   // is admin
   const [isAdmin] = useAdmin();
-  console.log(isAdmin);
 
   return (
     <>

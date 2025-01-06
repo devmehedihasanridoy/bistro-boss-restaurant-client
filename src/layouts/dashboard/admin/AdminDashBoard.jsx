@@ -32,7 +32,7 @@ const AdminDashBoard = () => {
               Admin Home
             </NavLink>
             <NavLink
-              to="/add-items"
+              to="/dashboard/add-items"
               className={({ isActive }) =>
                 `flex items-center px-6 py-2 text-lg ${
                   isActive ? "bg-orange-700 rounded-md" : "hover:bg-orange-400"

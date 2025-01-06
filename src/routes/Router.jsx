@@ -14,6 +14,7 @@ import UserHome from "../pages/dashboard/UserHome";
 import DashBoard from "../layouts/dashboard/DashBoard";
 import AllUsers from "../pages/dashboard/admin/AllUsers";
 import AdminPrivate from "../privateRoute/AdminPrivate";
+import AddItems from "../pages/dashboard/admin/AddItems";
 
 const Router = () => {
   return (
@@ -30,9 +31,12 @@ const Router = () => {
       </Route>
       {/* user dashboard layout */}
       <Route path="dashboard" element={<PrivateRoute><DashBoard /></PrivateRoute>}>
+      {/* for users */}
         <Route index  element={<UserHome/>} />
         <Route path="cart" element={<Cart />} />
+        {/* admin route */}
         <Route path="all-users" element={<AdminPrivate><AllUsers/></AdminPrivate>} />
+        <Route path="add-items" element={<AdminPrivate><AddItems/></AdminPrivate>} />
       </Route>
       {/* 404 page */}
       <Route path="*" element={<NotFound />} />
