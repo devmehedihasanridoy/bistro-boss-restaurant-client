@@ -8,7 +8,6 @@ import {
   FaShoppingCart,
   FaEnvelope,
 } from "react-icons/fa";
-import { Helmet } from "react-helmet-async";
 
 const AdminDashBoard = () => {
   //
@@ -79,7 +78,7 @@ const AdminDashBoard = () => {
           </div>
           <div className="pt-4">
             <NavLink
-              to="/home"
+              to="/"
               className={({ isActive }) =>
                 `flex items-center px-6 py-2 text-lg ${
                   isActive ? "bg-orange-700 rounded-md" : "hover:bg-orange-400"
