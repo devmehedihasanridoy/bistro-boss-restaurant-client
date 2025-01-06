@@ -4,7 +4,6 @@ import Layout from "../layouts/Layout";
 import Home from "../pages/home/Home";
 import OurMenu from "../pages/our menu/OurMenu";
 import OurShop from "../pages/our shop/OurShop";
-import DashBoard from "../layouts/dashboard/DashBoard";
 import NotFound from "../pages/not-found/NotFound";
 import Login from "../pages/auth/login/Login";
 import Register from "../pages/auth/register/Register";
@@ -12,6 +11,8 @@ import PrivateRoute from "../privateRoute/PrivateRoute";
 import Secret from "../components/shared/secret/Secret";
 import Cart from "../pages/dashboard/Cart";
 import UserHome from "../pages/dashboard/UserHome";
+import DashBoard from "../layouts/dashboard/DashBoard";
+import AllUsers from "../pages/dashboard/admin/AllUsers";
 
 const Router = () => {
   return (
@@ -27,9 +28,10 @@ const Router = () => {
         </Route>
       </Route>
       {/* user dashboard layout */}
-      <Route path="dashboard" element={<DashBoard />}>
+      <Route path="dashboard" element={<PrivateRoute><DashBoard /></PrivateRoute>}>
         <Route index  element={<UserHome/>} />
         <Route path="cart" element={<Cart />} />
+        <Route path="all-users" element={<AllUsers/>} />
       </Route>
       {/* 404 page */}
       <Route path="*" element={<NotFound />} />
