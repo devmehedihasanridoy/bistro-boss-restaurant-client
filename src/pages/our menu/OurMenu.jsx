@@ -6,9 +6,10 @@ import MenuCard from "../../components/shared/Card/MenuCard";
 import Heading from "../../components/shared/heading/Heading";
 import Hero from "../../components/shared/hero/Hero";
 import { Link } from "react-router-dom";
+import Loader from "../../components/loader/Loader";
 //
 const OurMenu = () => {
-  const [menuData] = useMenu();
+  const [menuData, isLoading] = useMenu();
   const popularData = menuData.filter(
     (offered) => offered.category === "offered"
   );
@@ -17,6 +18,9 @@ const OurMenu = () => {
   const saladData = menuData.filter((item) => item.category === "salad");
   const soupData = menuData.filter((item) => item.category === "soup");
   //
+  if(isLoading){
+    return <Loader/>
+  }
   return (
     <div>
       <Helmet>

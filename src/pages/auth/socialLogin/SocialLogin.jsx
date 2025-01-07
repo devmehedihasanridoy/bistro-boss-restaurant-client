@@ -6,15 +6,15 @@ import useAxiosPublic from "../../../components/hooks/useAxiosPublic";
 import toast from "react-hot-toast";
 
 const SocialLogin = () => {
-    // 
-    const axiosPublic = useAxiosPublic();
+  //
+  const axiosPublic = useAxiosPublic();
   //
   const { googleUserSignIn } = useAuth();
   //
   const navigate = useNavigate();
   //  google sign in
   const handleGoogleSignIn = async () => {
-    // 
+    //
     googleUserSignIn()
       .then(async (result) => {
         const userPayload = {
@@ -26,13 +26,11 @@ const SocialLogin = () => {
 
         try {
           await axiosPublic.post(`/addusers`, userPayload);
-          console.log("User data sent to the database.");
           toast.success("google sign in success");
-          navigate("/");
         } catch (error) {
           console.error("Error adding user:", error);
         }
-      
+        navigate("/");
       })
       .catch((err) => {
         console.log(err);

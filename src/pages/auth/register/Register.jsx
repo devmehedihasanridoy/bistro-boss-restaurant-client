@@ -1,5 +1,4 @@
 import React from "react";
-import { FaFacebook, FaGoogle, FaGithub } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../../components/hooks/useAuth";
 import { useForm } from "react-hook-form";
@@ -8,7 +7,10 @@ import toast from "react-hot-toast";
 import SocialLogin from "../socialLogin/SocialLogin";
 import useAxiosPublic from "../../../components/hooks/useAxiosPublic";
 
+
+// 
 const Register = () => {
+  
   const { updateUser, signUpUserUsingEmailPass } = useAuth();
   // 
   const axiosPublic = useAxiosPublic();

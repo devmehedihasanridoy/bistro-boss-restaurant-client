@@ -15,6 +15,8 @@ import DashBoard from "../layouts/dashboard/DashBoard";
 import AllUsers from "../pages/dashboard/admin/AllUsers";
 import AdminPrivate from "../privateRoute/AdminPrivate";
 import AddItems from "../pages/dashboard/admin/AddItems";
+import ManageItems from "../pages/dashboard/admin/ManageItems";
+import UpdateMenu from "../pages/dashboard/admin/UpdateMenu";
 
 const Router = () => {
   return (
@@ -37,6 +39,8 @@ const Router = () => {
         {/* admin route */}
         <Route path="all-users" element={<AdminPrivate><AllUsers/></AdminPrivate>} />
         <Route path="add-items" element={<AdminPrivate><AddItems/></AdminPrivate>} />
+        <Route path="manage-items" element={<AdminPrivate><ManageItems/></AdminPrivate>}/>
+        <Route path="manage-items/update/:id" element={<AdminPrivate><UpdateMenu/></AdminPrivate>}/>
       </Route>
       {/* 404 page */}
       <Route path="*" element={<NotFound />} />

@@ -43,7 +43,7 @@ const AdminDashBoard = () => {
               Add Items
             </NavLink>
             <NavLink
-              to="/manage-items"
+              to="/dashboard/manage-items"
               className={({ isActive }) =>
                 `flex items-center px-6 py-2 text-lg ${
                   isActive ? "bg-orange-700 rounded-md" : "hover:bg-orange-400"

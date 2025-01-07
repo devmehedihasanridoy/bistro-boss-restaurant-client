@@ -14,10 +14,51 @@ import { GoChevronDown } from "react-icons/go";
 import clsx from "clsx";
 import Heading from "../../../components/shared/heading/Heading";
 import { useForm } from "react-hook-form";
+import useAxiosPublic from "../../../components/hooks/useAxiosPublic";
+import useAxiosSecure from "../../../components/hooks/useAxiosSecure";
+import toast from "react-hot-toast"
+// image hosting api key from image bb
+const imageHostingApiKey = import.meta.env.VITE_Imagebb_api;
+const imageHostingApi = `https://api.imgbb.com/1/upload?key=${imageHostingApiKey}`
 
+
+// 
 const AddItems = () => {
+  const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
+  // 
   const { register, handleSubmit,formState: { errors }, } = useForm();
-  const onSubmit = (data) => console.log(data)
+  // submit the data to db
+  const onSubmit = async(formData) => {
+      // image upload to imagebb and get the image link
+       const imageFile = {image: formData?.image[0]}
+      //  post request to imagebb host
+       const {data} = await axiosPublic.post(imageHostingApi, imageFile, {
+          headers:{'Content-Type': 'multipart/form-data'}
+       })
+     
+       if(data?.success){
+            //payload
+            const recepieData = {
+                  name:formData?.name,
+                  category:formData?.category,
+                  price:parseFloat(formData?.price),
+                  recipe:formData?.recipe,
+                  image:data?.data?.display_url   
+            }
+            // 
+           await axiosSecure.post('/menu',recepieData)
+           toast.success(`${formData?.name} is added to the menu`)
+
+       }
+
+  }
+ 
+
+
+
+
+
 
   //
   return (
@@ -45,7 +86,7 @@ const AddItems = () => {
                 <Select
                   defaultValue={'default'}
                   required
-                  {...register("recepie")}
+                  {...register("category")}
                   className={clsx(
                     "mt-3 block w-full appearance-none rounded-lg border-none bg-black/5 py-1.5 px-3 text-sm/6 text-black",
                     "focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-black/25",
@@ -89,7 +130,7 @@ const AddItems = () => {
             </Label>
             <Textarea
               required
-              {...register("description")}
+              {...register("recipe")}
               className={clsx(
                 "mt-3 block w-full resize-none rounded-lg border-none bg-black/5 py-1.5 px-3 text-sm/6 text-black",
                 "focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-black/25"

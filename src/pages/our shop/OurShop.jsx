@@ -6,9 +6,10 @@ import "react-tabs/style/react-tabs.css";
 import useMenu from "../../components/hooks/useMenu";
 import FoodCard from "../../components/shared/Card/FoodCard";
 import { useParams } from "react-router-dom";
+import Loader from "../../components/loader/Loader";
 //
 const OurShop = () => {
-  const [menuData] = useMenu();
+  const [menuData,isLoading] = useMenu();
 //   
 const categories = ['salad', 'pizza' , 'soup' , 'dessert' , 'drinks']
 const {category}= useParams();
@@ -16,6 +17,11 @@ const initialindex = categories.indexOf(category);
 const [tabIndex , setTabIndex] = useState(initialindex > -1 ? initialindex : 0);
 // 
 
+
+ if(isLoading){
+   return <Loader/>
+ }
+//  
   return (
     <div>
       <Helmet>
