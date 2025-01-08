@@ -7,20 +7,18 @@ const useImageUpload = () => {
   const imageHostingApi = `https://api.imgbb.com/1/upload?key=${imageHostingApiKey}`;
   //
   const axiosPublic = useAxiosPublic();
-   //   
-   const [data, setData] = useState(null);
   //
   const imageUploadToImagebb = async (imageFile) => {
-    console.log(imageHostingApi,imageFile);
     //  post request to imagebb host
     const { data } = await axiosPublic.post(imageHostingApi, imageFile, {
       headers: { "Content-Type": "multipart/form-data" },
     });
-    setData(data)
+   return data
+   
   };
 
   //
-  return [imageUploadToImagebb ,data ];
+  return [imageUploadToImagebb ];
 };
 
 export default useImageUpload;

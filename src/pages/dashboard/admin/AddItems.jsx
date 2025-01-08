@@ -6,7 +6,6 @@ import {
   Label,
   Select,
   Button,
-  Description,
   Textarea,
 } from "@headlessui/react";
 import { GoChevronDown } from "react-icons/go";
@@ -14,17 +13,14 @@ import { GoChevronDown } from "react-icons/go";
 import clsx from "clsx";
 import Heading from "../../../components/shared/heading/Heading";
 import { useForm } from "react-hook-form";
-import useAxiosPublic from "../../../components/hooks/useAxiosPublic";
 import useAxiosSecure from "../../../components/hooks/useAxiosSecure";
 import toast from "react-hot-toast"
-// image hosting api key from image bb
-const imageHostingApiKey = import.meta.env.VITE_Imagebb_api;
-const imageHostingApi = `https://api.imgbb.com/1/upload?key=${imageHostingApiKey}`
+import useImageUpload from "../../../components/hooks/useImageUpload";
 
 
 // 
 const AddItems = () => {
-  const axiosPublic = useAxiosPublic();
+  const [imageUploadToImagebb] = useImageUpload();
   const axiosSecure = useAxiosSecure();
   // 
   const { register, handleSubmit,formState: { errors }, } = useForm();
@@ -32,26 +28,27 @@ const AddItems = () => {
   const onSubmit = async(formData) => {
       // image upload to imagebb and get the image link
        const imageFile = {image: formData?.image[0]}
-      //  post request to imagebb host
-       const {data} = await axiosPublic.post(imageHostingApi, imageFile, {
-          headers:{'Content-Type': 'multipart/form-data'}
-       })
-     
-       if(data?.success){
-            //payload
-            const recepieData = {
-                  name:formData?.name,
-                  category:formData?.category,
-                  price:parseFloat(formData?.price),
-                  recipe:formData?.recipe,
-                  image:data?.data?.display_url   
-            }
-            // 
-           await axiosSecure.post('/menu',recepieData)
-           toast.success(`${formData?.name} is added to the menu`)
+        // 
+          imageUploadToImagebb(imageFile)
+          .then(async  data =>{
+            //  when data is upload and we get a link from image bb
+             if(data?.success){
+              //payload
+              const recepieData = {
+                    name:formData?.name,
+                    category:formData?.category,
+                    price:parseFloat(formData?.price),
+                    recipe:formData?.recipe,
+                    image:data?.data?.display_url   
+              }
+              // 
+             await axiosSecure.post('/menu',recepieData)
+             toast.success(`${formData?.name} is added to the menu`)
+  
+         }
 
-       }
-
+          })
+   
   }
  
 
