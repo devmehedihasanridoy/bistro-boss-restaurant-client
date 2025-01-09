@@ -17,6 +17,8 @@ import AdminPrivate from "../privateRoute/AdminPrivate";
 import AddItems from "../pages/dashboard/admin/AddItems";
 import ManageItems from "../pages/dashboard/admin/ManageItems";
 import UpdateMenu from "../pages/dashboard/admin/UpdateMenu";
+import Payment from "../pages/dashboard/payment/Payment";
+import PaymentHisory from "../pages/dashboard/PaymentHisory";
 
 const Router = () => {
   return (
@@ -36,6 +38,8 @@ const Router = () => {
       {/* for users */}
         <Route index  element={<UserHome/>} />
         <Route path="cart" element={<Cart />} />
+        <Route path="payment" element={<Payment />} />
+        <Route path="payment-history" element={<PaymentHisory />} />
         {/* admin route */}
         <Route path="all-users" element={<AdminPrivate><AllUsers/></AdminPrivate>} />
         <Route path="add-items" element={<AdminPrivate><AddItems/></AdminPrivate>} />

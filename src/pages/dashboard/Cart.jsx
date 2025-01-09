@@ -3,10 +3,10 @@ import useCart from "../../components/hooks/useCart";
 import { AiTwotoneDelete } from "react-icons/ai";
 import toast from "react-hot-toast";
 import useAxiosSecure from "../../components/hooks/useAxiosSecure";
-
+import { Link } from "react-router-dom";
 
 const Cart = () => {
-  const [cart,refetch] = useCart();
+  const [cart, refetch] = useCart();
   const cartItems = cart || [];
   const axiosSecure = useAxiosSecure();
   //
@@ -15,30 +15,35 @@ const Cart = () => {
   const totalPrice = cart.reduce((acc, item) => {
     return acc + item.price;
   }, 0);
-// delete item from cart 
-const handleDeleteItem = (id) => {
-    toast(
-        (t) => (
-          <span>
-           Are You Sure ? 
-             <button className="px-2 py-1 bg-green-400 rounded-lg mx-2" onClick={ async() =>{
-                   try{
-                     const {data} = await axiosSecure.delete(`/cart/${id}`);
-                     if(data.deletedCount === 1){
-                        toast.dismiss(t.id);
-                       toast.success('Item deleted successfully');
-                       refetch();
-                     }
-
-                   }catch{
-
-                   }
-             }}>Delete</button>
-            <button className="px-2 py-1 bg-red-400 rounded-lg" onClick={() => toast.dismiss(t.id)}>Cancle</button>
-          </span>
-        )
-      );
-}
+  // delete item from cart
+  const handleDeleteItem = (id) => {
+    toast((t) => (
+      <span>
+        Are You Sure ?
+        <button
+          className="px-2 py-1 bg-green-400 rounded-lg mx-2"
+          onClick={async () => {
+            try {
+              const { data } = await axiosSecure.delete(`/cart/${id}`);
+              if (data.deletedCount === 1) {
+                toast.dismiss(t.id);
+                toast.success("Item deleted successfully");
+                refetch();
+              }
+            } catch {}
+          }}
+        >
+          Delete
+        </button>
+        <button
+          className="px-2 py-1 bg-red-400 rounded-lg"
+          onClick={() => toast.dismiss(t.id)}
+        >
+          Cancle
+        </button>
+      </span>
+    ));
+  };
 
   //
   return (
@@ -50,9 +55,17 @@ const handleDeleteItem = (id) => {
         <div className="flex justify-between items-center mb-4 text-2xl font-medium">
           <p className="font-semibold">Total Orders: {totalOrders}</p>
           <p className="font-semibold">Total Price: ${totalPrice.toFixed(2)}</p>
-          <button className="bg-orange-500 text-white px-4 py-2 rounded-md hover:bg-orange-600">
-            PAY
-          </button>
+          {cart?.length > 0 ? (
+            <Link to={`/dashboard/payment`}>
+              <button className="bg-orange-500 text-white px-4 py-2 rounded-md hover:bg-orange-600">
+                PAY
+              </button>
+            </Link>
+          ) : (
+            <button disabled className="btn text-white px-6 text-xl py-2 rounded-md">
+              PAY
+            </button>
+          )}
         </div>
 
         <div className="overflow-x-auto">
@@ -69,16 +82,21 @@ const handleDeleteItem = (id) => {
             <tbody>
               {cartItems.map((item, idx) => (
                 <tr key={item?._id} className="border-t">
+                  <td className="px-4 py-2">{idx + 1}</td>
                   <td className="px-4 py-2">
-                    {idx+ 1}
-                  </td>
-                  <td className="px-4 py-2">
-                     <img className=" w-16 h-16 rounded-md" src={item?.image} alt="" />
+                    <img
+                      className=" w-16 h-16 rounded-md"
+                      src={item?.image}
+                      alt=""
+                    />
                   </td>
                   <td className="px-4 py-2">{item?.name}</td>
                   <td className="px-4 py-2">${item?.price?.toFixed(2)}</td>
                   <td className="px-4 py-2">
-                    <button onClick={()=>handleDeleteItem(item?._id)} className="bg-red-500 text-white px-3 py-1 rounded-md hover:bg-red-600">
+                    <button
+                      onClick={() => handleDeleteItem(item?._id)}
+                      className="bg-red-500 text-white px-3 py-1 rounded-md hover:bg-red-600"
+                    >
                       <AiTwotoneDelete className="text-xl" />
                     </button>
                   </td>

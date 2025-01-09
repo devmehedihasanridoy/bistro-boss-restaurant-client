@@ -12,8 +12,10 @@ import {
   FaListAlt,
   FaEnvelope,
 } from "react-icons/fa";
+import useCart from "../../components/hooks/useCart";
 
 const  UserDashBoard = () => {
+  const [cart] = useCart()
   return (
   
      
@@ -51,7 +53,7 @@ const  UserDashBoard = () => {
                 Reservation
               </NavLink>
               <NavLink
-                to="/payment-history"
+                to="/dashboard/payment-history"
                 className={({ isActive }) =>
                   `flex items-center px-6 py-2 text-lg ${
                     isActive
@@ -74,7 +76,7 @@ const  UserDashBoard = () => {
                 }
               >
                 <FaShoppingCart className="mr-4" />
-                My Cart
+                My Cart ({cart.length})
               </NavLink>
               <NavLink
                 to="/add-review"
