@@ -62,9 +62,11 @@ const Cart = () => {
               </button>
             </Link>
           ) : (
-            <button disabled className="btn text-white px-6 text-xl py-2 rounded-md">
-              PAY
-            </button>
+            <Link to={"/shop"}>
+              <button className="btn btn-secondary text-white px-6 text-xl py-2 rounded-md">
+                Add Reciepe
+              </button>
+            </Link>
           )}
         </div>
 

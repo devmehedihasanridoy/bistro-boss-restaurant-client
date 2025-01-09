@@ -75,7 +75,7 @@ const CheckoutForm = () => {
 
     if(confirmError){
       // console.log(confirmError);
-      toast.error("You already paid for it")
+    
     }
     else{
       // console.log("payment-intent", paymentIntent);
@@ -125,7 +125,7 @@ const CheckoutForm = () => {
         {transactionId && <p className="text-sm text-green-600 font-medium">Your Transection Id : {transactionId}</p>}
       {/*  */}
       <button className="btn btn-primary mt-4" type="submit" disabled={!stripe || !clientSecret}>
-        Submit
+         Pay ${totalPrice}
       </button>
     </form>
   );
