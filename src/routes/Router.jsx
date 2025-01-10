@@ -19,6 +19,7 @@ import ManageItems from "../pages/dashboard/admin/ManageItems";
 import UpdateMenu from "../pages/dashboard/admin/UpdateMenu";
 import Payment from "../pages/dashboard/payment/Payment";
 import PaymentHisory from "../pages/dashboard/PaymentHisory";
+import AdminHome from "../pages/dashboard/admin/AdminHome";
 
 const Router = () => {
   return (
@@ -36,11 +37,12 @@ const Router = () => {
       {/* user dashboard layout */}
       <Route path="dashboard" element={<PrivateRoute><DashBoard /></PrivateRoute>}>
       {/* for users */}
-        <Route index  element={<UserHome/>} />
+        <Route path="user-home"  element={<UserHome/>} />
         <Route path="cart" element={<Cart />} />
         <Route path="payment" element={<Payment />} />
         <Route path="payment-history" element={<PaymentHisory />} />
         {/* admin route */}
+        <Route path="admin-home" element={<AdminPrivate><AdminHome/></AdminPrivate>} />
         <Route path="all-users" element={<AdminPrivate><AllUsers/></AdminPrivate>} />
         <Route path="add-items" element={<AdminPrivate><AddItems/></AdminPrivate>} />
         <Route path="manage-items" element={<AdminPrivate><ManageItems/></AdminPrivate>}/>

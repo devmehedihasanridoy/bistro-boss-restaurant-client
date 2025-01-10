@@ -4,12 +4,15 @@ import { Link, NavLink } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast"
 import useCart from "../../hooks/useCart";
+import useAdmin from "../../hooks/useAdmin";
 
 const Navbar = () => {
   // 
   const [cart] = useCart();
   // 
   const {userSignOut , user} = useAuth();
+  // 
+  const [isAdmin] = useAdmin();
   // user sign out
   const handleSignout =()=>{
     userSignOut()
@@ -28,9 +31,16 @@ const Navbar = () => {
       <li>
         <NavLink to="/conatct-us">Contact Us</NavLink>
       </li>
-      <li>
-        <NavLink to="/dashboard">Dashboard</NavLink>
+      {
+        user && isAdmin?.admin &&  <li>
+        <NavLink to="/dashboard/admin-home">Dashboard</NavLink>
       </li>
+      }
+       {
+        user && !isAdmin?.admin &&  <li>
+        <NavLink to="/dashboard/user-home">Dashboard</NavLink>
+      </li>
+      }
       <li>
         <NavLink to="/menu">Our menu</NavLink>
       </li>

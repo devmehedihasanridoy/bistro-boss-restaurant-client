@@ -9,7 +9,7 @@ const AdminPrivate = ({children}) => {
     const {user, loading} = useAuth();
     const location = useLocation();
     const [isAdmin, isLoading] = useAdmin();
-    console.log(isAdmin);
+    
 
     if(loading || isLoading){
         return <Loader/>

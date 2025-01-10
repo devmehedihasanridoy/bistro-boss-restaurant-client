@@ -21,7 +21,7 @@ const AdminDashBoard = () => {
         <nav className="space-y-4">
           <div className="border-b border-white pb-4">
             <NavLink
-              to="/admin-home"
+              to="/dashboard/admin-home"
               className={({ isActive }) =>
                 `flex items-center px-6 py-2 text-lg ${
                   isActive ? "bg-orange-700 rounded-md" : "hover:bg-orange-400"

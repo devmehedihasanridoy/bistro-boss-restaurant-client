@@ -2,9 +2,11 @@ import React from 'react';
 
 const UserHome = () => {
     return (
-        <div>
-            <h1>hello from user home</h1>
-        </div>
+        <div className='py-10'> 
+        <h1 className='text-4xl font-serif'>Hi, Welcome back!</h1>
+        <div></div>
+        <div></div>
+    </div>
     );
 };
 

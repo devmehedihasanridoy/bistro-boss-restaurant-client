@@ -39,7 +39,6 @@ const SocialLogin = () => {
   return (
     <>
       <div className="mt-6 text-center">
-        <p className="text-gray-500 text-sm">Or sign up with</p>
         <div className="flex justify-center space-x-4 mt-4">
           <button className="bg-gray-100 p-3 rounded-full shadow hover:bg-gray-200">
             <FaFacebook className="text-blue-600 text-xl" />
