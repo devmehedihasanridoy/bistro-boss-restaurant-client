@@ -17,6 +17,7 @@ const Navbar = () => {
   const handleSignout =()=>{
     userSignOut()
     .then(result => {
+      localStorage.removeItem("token");
       // handle the result here
       toast.success('User Logout successfully', {duration: 3000,});
     }).catch(err=>{

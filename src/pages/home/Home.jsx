@@ -9,7 +9,7 @@ import Testimonial from "../../components/home/testimonial/Testimonial";
 import Hero from "../../components/shared/hero/Hero";
 import ChefRecommand from "../../components/home/chefRecommands/ChefRecommand";
 import { Helmet } from "react-helmet-async";
-import Banner1 from "../../components/shared/banner/Banner1";
+
 
 const Home = () => {
   return (

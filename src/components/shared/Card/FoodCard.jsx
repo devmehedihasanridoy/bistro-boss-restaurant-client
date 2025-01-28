@@ -32,7 +32,7 @@ const FoodCard = ({ item }) => {
         refetch();
         toast.success("Item added to cart");
       } catch (err) {
-        console.log(err);
+        // console.log(err);
       }
     } else {
       toast((t) => (
@@ -57,7 +57,7 @@ const FoodCard = ({ item }) => {
       ));
     }
 
-    console.log(item);
+ 
   };
   return (
     <div>

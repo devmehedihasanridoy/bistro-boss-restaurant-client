@@ -3,7 +3,7 @@ import axios from 'axios'
 
 
 const axiosPublic = axios.create({
-    baseURL:'https://bistro-boss-server-hazel-three.vercel.app',
+    baseURL:`${import.meta.env.VITE_base_url}`,
     headers: {
         'Content-Type': 'application/json',
     },
